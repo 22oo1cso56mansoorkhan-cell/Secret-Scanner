@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secret Scanner</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <h1>
+                    <i class="fas fa-shield-alt" style="color: #e17055;"></i>
+                    Secret Scanner
+                </h1>
+                <p class="subhead">Detect exposed API keys, passwords, tokens, and credentials in your code</p>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- Left Panel: Controls -->
+            <div class="controls-panel">
+                <div class="scan-section">
+                    <h3><i class="fas fa-microchip"></i> Scan Options</h3>
+                    
+                    <div class="scan-option">
+                        <label><i class="fas fa-file"></i> Upload File</label>
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #6c5ce7;"></i>
+                            <p>Drop a file here or click to browse</p>
+                            <input type="file" id="fileUpload" multiple />
+                        </div>
+                    </div>
+
+                    <div class="scan-option">
+                        <label><i class="fab fa-github"></i> GitHub Repository</label>
+                        <div class="input-group">
+                            <input type="text" id="repoInput" placeholder="owner/repo (e.g., facebook/react)" />
+                            <button class="btn btn-primary" id="scanRepoBtn">
+                                <i class="fas fa-search"></i> Scan
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="scan-option">
+                        <label><i class="fas fa-code"></i> Paste Code</label>
+                        <textarea id="codeInput" rows="4" placeholder="Paste code to scan for secrets..."></textarea>
+                        <button class="btn btn-primary" id="scanCodeBtn">
+                            <i class="fas fa-search"></i> Scan Code
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalFiles">0</span>
+                        <span class="stat-label">Files Scanned</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalSecrets">0</span>
+                        <span class="stat-label">Secrets Found</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="riskLevel">Safe</span>
+                        <span class="stat-label">Risk Level</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Results -->
+            <div class="results-panel">
+                <div class="results-header">
+                    <h3><i class="fas fa-list"></i> Scan Results</h3>
+                    <div class="results-actions">
+                        <button class="btn btn-outline" id="clearResults">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                        <button class="btn btn-outline" id="exportResults">
+                            <i class="fas fa-file-export"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <div class="results-container" id="resultsContainer">
+                    <div class="empty-state">
+                        <i class="fas fa-shield-alt" style="font-size: 3rem; color: #b2bec3;"></i>
+                        <p>No secrets found yet</p>
+                        <p class="empty-hint">Upload a file, scan a repository, or paste code to start scanning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Modal -->
+        <div class="modal" id="resultModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-exclamation-triangle" style="color: #e17055;"></i> Secret Details</h3>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Dynamic content -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="closeModalBtn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
